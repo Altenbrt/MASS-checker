@@ -83,6 +83,7 @@ public class MutationChecker {
 		}
 		// end loop
 
+		messages.add("#TEst42");
 		return messages;
 	}
 
