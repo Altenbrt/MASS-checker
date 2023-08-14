@@ -45,6 +45,10 @@ public class MutationChecker {
 	public List<String> check() {
 		List<String> messages = new ArrayList<>();
 		messages.add("#TEst42");
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		messages.add("#TEst42");
+		System.out.println(messages);
+		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		return messages;
 		/*
 
@@ -90,7 +94,7 @@ public class MutationChecker {
 
 		messages.add("#TEst42");
 		return messages;
-		
+
 		 */
 	}
 
