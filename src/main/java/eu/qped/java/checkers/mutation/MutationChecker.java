@@ -76,9 +76,8 @@ public class MutationChecker {
 			messages.add("#"+c.className());
 			if (c.getaClass().equals(BasicTemplate.class))
 				messages.add("It works !!!!!!!!!!!!!!!!!!!!!!!!!!");
-			Arrays.stream(c.getaClass().getInterfaces()).forEach(x -> messages.add(x.getName()));
-			Arrays.stream(c.getaClass().getGenericInterfaces()).forEach(x -> messages.add(x.toString()));
-			Arrays.stream(c.getaClass().getAnnotatedInterfaces()).forEach(x -> messages.add(x.toString()));
+			Arrays.stream(c.getaClass().getClasses()).forEach(x -> messages.add(x.getName()));
+			Arrays.stream(c.getaClass().getGenericInterfaces()).forEach(x -> messages.add(x.getTypeName()));
 		}
 
 		/*
