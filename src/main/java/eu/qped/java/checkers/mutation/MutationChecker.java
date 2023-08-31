@@ -2,6 +2,7 @@ package eu.qped.java.checkers.mutation;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -69,7 +70,9 @@ public class MutationChecker {
 		List<String> testClassNames = testClasses.stream().map(MutationFacade::className).collect(Collectors.toList());
 
 
-		//Versions[] v;
+		Object[] versions;
+		Method programm;
+		Method configuration;
 
 		messages.add("testClassNames: ");
 		messages.add("Classes: ");
@@ -89,19 +92,28 @@ public class MutationChecker {
 					//Getting the Enum
 					//Class<Versions> cV = loadedClass.asSubclass(Versions.class);
 					Arrays.stream(loadedClass.getInterfaces()).forEach(x -> messages.add(x.getName()));
-					Object[] v = loadedClass.getEnumConstants(); //.asSubclass(Versions.class);
+					versions = loadedClass.getEnumConstants(); //.asSubclass(Versions.class);
 					messages.add("After");
 					//Object[] v = loadedClass.getEnumConstants();
 
 					//Versions[] v2 = cV.getEnumConstants();
-					String s= v.length + "";
+					String s= versions.length + "";
 					messages.add("Length: " + s);
-
+					
 					//messages.add(v.toString());
 					//Arrays.stream(v2).forEach(x->messages.add(x.toString()));
 				}
-				if (Arrays.stream(loadedClass.getMethods()).anyMatch(x -> x.getName().contains("programm")))
+				if (Arrays.stream(loadedClass.getMethods()).anyMatch(x -> x.getName().contains("programm"))) {
 					messages.add("It works !!!!!!!!!!!!!!!!!!!!!!!!!!");
+
+					for (Method m : loadedClass.getMethods()) {
+						if (m.getName().equals("programm"))
+							programm = m;
+						if (m.getName().equals("configuration"))
+							configuration = m;
+					}
+
+				}
 
 				messages.add("End of try");
 			} catch (Exception e) {
