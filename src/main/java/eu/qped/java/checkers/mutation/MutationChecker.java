@@ -47,8 +47,8 @@ public class MutationChecker {
 
 	public List<String> check() {
 		// Determine the application classes and test classes in the solution
-		List<CoverageFacade> testClasses = new ArrayList<>();
-        List<CoverageFacade> classes = new ArrayList<>();
+		List<MutationFacade> testClasses = new ArrayList<>();
+        List<MutationFacade> classes = new ArrayList<>();
         try {
 			separateTestAndApplicationClasses(testClasses, classes);
 		} catch (IOException e) {
@@ -57,10 +57,10 @@ public class MutationChecker {
 
         // Create a classloader for the student and instructor classes
 		MemoryLoader memoryLoader = new MemoryLoader(this.getClass().getClassLoader());
-		for (CoverageFacade testClass : testClasses) {
+		for (MutationFacade testClass : testClasses) {
 			memoryLoader.upload(testClass.className(), testClass.byteCode());
 		}
-		for (CoverageFacade clazz : classes) {
+		for (MutationFacade clazz : classes) {
 			memoryLoader.upload(clazz.className(), clazz.byteCode());
 		}
 
@@ -71,16 +71,19 @@ public class MutationChecker {
 		// Leave list empty for no feeback.
 		List<String> messages = new ArrayList<>();
 		
-		List<String> testClassNames = testClasses.stream().map(CoverageFacade::className).collect(Collectors.toList());
+		List<String> testClassNames = testClasses.stream().map(MutationFacade::className).collect(Collectors.toList());
 
 		messages.add("testClassNames: ");
 		for (String s : testClassNames) {
 			messages.add(s);
 		}
 		messages.add("Classes: ");
-		for (CoverageFacade clazz : classes) {
-			messages.add(clazz.className());
+		for (MutationFacade c: classes) {
+			messages.add(c.className());
+			if (c.getaClass().equals(BasicTemplate.class))
+				messages.add("It works !!!!!!!!!!!!!!!!!!!!!!!!!!");
 		}
+		
 		/*
 		//Getting Basic Implementation
 		BasicTemplate programm = new GrayCode();
@@ -150,7 +153,7 @@ public class MutationChecker {
 
 	}
 
-	public void separateTestAndApplicationClasses(List<CoverageFacade> testClasses, List<CoverageFacade> classes)
+	public void separateTestAndApplicationClasses(List<MutationFacade> testClasses, List<MutationFacade> classes)
 			throws IOException {
 		List<File> allClassFiles = QpedQfFilesUtility.filesWithExtension(solutionRoot, "class");
         String solutionDirectoryPath = solutionRoot.getCanonicalPath() + File.separator;
@@ -163,7 +166,8 @@ public class MutationChecker {
         }
         for (File file : allClassFiles) {
         	String filename = file.getCanonicalPath();
-        	
+        	Class aClass = file.getClass();
+
         	String classname = filename.
         			substring(solutionDirectoryPath.length(), filename.length() - ".class".length()).
         			replaceAll(fileSeparator, ".");
@@ -171,19 +175,19 @@ public class MutationChecker {
         	String[] classnameSegments = classname.split("\\.");
         	String simpleClassname = classnameSegments[classnameSegments.length - 1];
         	
-        	CoverageFacade coverageFacade = new CoverageFacade(
+        	MutationFacade mutationFacade = new MutationFacade(
         			Files.readAllBytes(file.toPath()),
-        			classname);
+        			classname, aClass);
         	
         	if (simpleClassname.startsWith("Test") 
         			|| simpleClassname.startsWith("test")
         			|| simpleClassname.endsWith("Test")
         			|| simpleClassname.endsWith("test")) {
         		// the class is a test
-        		testClasses.add(coverageFacade);
+        		testClasses.add(mutationFacade);
         	} else {
         		// the class is an application class (i.e., no test)
-        		classes.add(coverageFacade);
+        		classes.add(mutationFacade);
         	}
         }
 	}
