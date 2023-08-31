@@ -79,15 +79,14 @@ public class MutationChecker {
 		for (MutationFacade c: classes) {
 			messages.add("#"+c.className());
 
-			if (c.className().contains("GrayCode") && !c.className().contains("Enum")) {
-				messages.add("It works !!!!!!!!!!!!!!!!!!!!!!!!!!");
 
-				try {
-					Arrays.stream(memoryLoader.loadClass(c.className()).getMethods()).forEach(x -> messages.add(x.getName()));
-				} catch (ClassNotFoundException e) {
-					messages.add(e.getMessage());
-				}
+			try {
+				Class loadedClass = memoryLoader.loadClass(c.className());
+				if (Arrays.stream(loadedClass.getInterfaces()).anyMatch(x -> x.equals(BasicTemplate.class)))
+					messages.add("It works !!!!!!!!!!!!!!!!!!!!!!!!!!");
 
+			} catch (ClassNotFoundException e) {
+				messages.add(e.getMessage());
 			}
 
 		}
