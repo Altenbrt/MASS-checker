@@ -76,7 +76,7 @@ public class MutationChecker {
 			messages.add("#"+c.className());
 			if (c.className().contains("BasicTemplate") || c.className().contains("StudentTests")
 					|| c.className().contains("Versions")) {
-				//continue;
+				continue;
 			}
 
 			try {
@@ -87,7 +87,7 @@ public class MutationChecker {
 					messages.add("It works !!!!!!!!!!!!!!!!!!!!!!!!!!");
 					//Getting the Enum
 					Class<Versions> cV = loadedClass.asSubclass(Versions.class);
-
+					messages.add("It works !!!!!!!!!!!!!!!!!!!!!!!!!!");
 					//Object[] v = loadedClass.getEnumConstants();
 
 					Versions[] v2 = cV.getEnumConstants();
