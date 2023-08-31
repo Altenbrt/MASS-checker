@@ -92,13 +92,13 @@ public class MutationChecker {
 
 					messages.add("Length: " + v.length);
 
-					messages.add(v.toString());
-					Arrays.stream(v).forEach(x->messages.add(x.getFeedback()));
+					//messages.add(v.toString());
+					//Arrays.stream(v).forEach(x->messages.add(x.getFeedback()));
 				}
 				if (loadedClass.isInstance(BasicTemplate.class))
 					messages.add("It works !!!!!!!!!!!!!!!!!!!!!!!!!!");
 
-
+				messages.add("End of try");
 			} catch (Exception e) {
 				messages.add(e.getMessage());
 			} catch (Error er) {
