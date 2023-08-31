@@ -73,7 +73,7 @@ public class MutationChecker {
 		
 		List<String> testClassNames = testClasses.stream().map(CoverageFacade::className).collect(Collectors.toList());
 
-		testClassNames.stream().map(x -> messages.add(x));
+		testClassNames.stream().forEach(x -> messages.add(x));
 		/*
 		//Getting Basic Implementation
 		BasicTemplate programm = new GrayCode();
