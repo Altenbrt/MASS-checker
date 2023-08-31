@@ -6,13 +6,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -79,11 +73,12 @@ public class MutationChecker {
 		}
 		messages.add("Classes: ");
 		for (MutationFacade c: classes) {
-			messages.add(c.className());
+			messages.add("#"+c.className());
 			if (c.getaClass().equals(BasicTemplate.class))
 				messages.add("It works !!!!!!!!!!!!!!!!!!!!!!!!!!");
+			Arrays.stream(c.getaClass().getInterfaces()).forEach(x -> messages.add(x.getName()));
 		}
-		
+
 		/*
 		//Getting Basic Implementation
 		BasicTemplate programm = new GrayCode();
