@@ -100,7 +100,7 @@ public class MutationChecker {
 					//messages.add(v.toString());
 					//Arrays.stream(v2).forEach(x->messages.add(x.toString()));
 				}
-				if (loadedClass.isInstance(BasicTemplate.class))
+				if (Arrays.stream(loadedClass.getMethods()).anyMatch(x -> x.getName().contains("programm")))
 					messages.add("It works !!!!!!!!!!!!!!!!!!!!!!!!!!");
 
 				messages.add("End of try");
