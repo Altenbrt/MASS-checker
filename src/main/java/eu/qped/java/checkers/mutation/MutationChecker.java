@@ -68,7 +68,7 @@ public class MutationChecker {
 		List<String> testClassNames = testClasses.stream().map(MutationFacade::className).collect(Collectors.toList());
 
 
-		Versions[] v = new Versions[1];
+		Versions[] v;
 
 		messages.add("testClassNames: ");
 		messages.add("Classes: ");
@@ -90,6 +90,9 @@ public class MutationChecker {
 
 					v = cV.getEnumConstants();
 
+					messages.add("Length: " + v.length);
+
+					messages.add(v.toString());
 					Arrays.stream(v).forEach(x->messages.add(x.getFeedback()));
 				}
 				if (loadedClass.isInstance(BasicTemplate.class))
