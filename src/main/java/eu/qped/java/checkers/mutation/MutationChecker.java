@@ -67,8 +67,10 @@ public class MutationChecker {
 		
 		List<String> testClassNames = testClasses.stream().map(MutationFacade::className).collect(Collectors.toList());
 
+
+		Versions[] v = new Versions[1];
+
 		messages.add("testClassNames: ");
-		Arrays.stream(BasicTemplate.class.getMethods()).forEach(x -> messages.add(x.getName()));
 		messages.add("Classes: ");
 		for (MutationFacade c: classes) {
 			messages.add("#"+c.className());
@@ -79,9 +81,12 @@ public class MutationChecker {
 
 			try {
 				Class loadedClass = memoryLoader.loadClass(c.className());
-				Arrays.stream(loadedClass.getInterfaces()).forEach(x -> messages.add(x.getName()));
-				if (Arrays.stream(loadedClass.getInterfaces()).anyMatch(x -> x.getName().contains("Versions")))
+				Arrays.stream(loadedClass.getClasses()).forEach(x -> messages.add(x.getName()));
+				if (Arrays.stream(loadedClass.getInterfaces()).anyMatch(x -> x.getName().contains("Versions"))) {
 					messages.add("It works !!!!!!!!!!!!!!!!!!!!!!!!!!");
+					//Getting the Enum
+					v = (Versions[]) loadedClass.getEnumConstants();
+				}
 				if (Arrays.stream(loadedClass.getDeclaredClasses()).anyMatch(x -> x.getName().contains("BasicTemplate")))
 					messages.add("It works !!!!!!!!!!!!!!!!!!!!!!!!!!");
 
@@ -93,6 +98,8 @@ public class MutationChecker {
 
 		}
 
+		messages.add("--------");
+		Arrays.stream(v).forEach(x->messages.add(x.toString()));
 		/*
 		//Getting Basic Implementation
 		BasicTemplate programm = new GrayCode();
