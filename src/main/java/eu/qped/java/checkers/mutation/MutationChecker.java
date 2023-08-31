@@ -25,6 +25,8 @@ import eu.qped.java.checkers.mutation.interfaces.BasicTemplate;
 import eu.qped.java.checkers.mutation.interfaces.StudentTests;
 import eu.qped.java.checkers.mutation.interfaces.Versions;
 
+import static com.sun.jmx.mbeanserver.Util.cast;
+
 public class MutationChecker {
 
 //	private QfCoverageSettings covSettings;
@@ -86,7 +88,7 @@ public class MutationChecker {
 				if (Arrays.stream(loadedClass.getInterfaces()).anyMatch(x -> x.getName().contains("Versions"))) {
 					messages.add("It works !!!!!!!!!!!!!!!!!!!!!!!!!!");
 					//Getting the Enum
-					Class<Versions> cV = loadedClass.asSubclass(Versions.class);
+					Class<Versions> cV = cast(loadedClass); //.asSubclass(Versions.class);
 					messages.add("After");
 					//Object[] v = loadedClass.getEnumConstants();
 
