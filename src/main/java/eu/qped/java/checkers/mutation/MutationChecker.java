@@ -90,7 +90,9 @@ public class MutationChecker {
 
 					Object[] v = loadedClass.getEnumConstants();
 
-					Versions[] ver = (Versions[])v;
+					Versions[] ver = (Versions[])Arrays.stream(v).map(x -> (Versions)x).toArray();
+					
+
 					messages.add("Length: " + ver.length);
 
 					//messages.add(v.toString());
