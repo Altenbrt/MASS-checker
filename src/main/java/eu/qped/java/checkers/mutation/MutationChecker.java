@@ -104,7 +104,7 @@ public class MutationChecker {
 			} catch (Error er) {
 				messages.add(er.getMessage());
 			}
-
+			messages.add("After try catch");
 		}
 
 		/*
