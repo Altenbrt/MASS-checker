@@ -110,7 +110,7 @@ public class MutationChecker {
 			} catch (Error er) {
 				messages.add("Error)");
 				messages.add(er.getMessage());
-				messages.add(ee.getCause().toString());
+				messages.add(er.getCause().toString());
 			}
 			messages.add("After try catch");
 		}
