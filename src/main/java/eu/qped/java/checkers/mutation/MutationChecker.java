@@ -92,12 +92,10 @@ public class MutationChecker {
 
 					Versions[] v2 = cV.getEnumConstants();
 
-					Versions[] ver = (Versions[])Arrays.stream(v2).map(x -> (Versions)x).toArray();
-
-					messages.add("Length: " + ver.length);
+					messages.add("Length: " + v2.length);
 
 					//messages.add(v.toString());
-					Arrays.stream(ver).forEach(x->messages.add(ver.toString()));
+					//Arrays.stream(ver).forEach(x->messages.add(ver.toString()));
 				}
 				if (loadedClass.isInstance(BasicTemplate.class))
 					messages.add("It works !!!!!!!!!!!!!!!!!!!!!!!!!!");
@@ -175,8 +173,6 @@ public class MutationChecker {
 
 		messages.add("#TEst42");
 		return messages;
-
-
 	}
 
 	public void separateTestAndApplicationClasses(List<MutationFacade> testClasses, List<MutationFacade> classes)
