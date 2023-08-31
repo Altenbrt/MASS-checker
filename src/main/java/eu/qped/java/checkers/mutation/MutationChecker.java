@@ -72,12 +72,18 @@ public class MutationChecker {
 			messages.add(s);
 		}
 		messages.add("Classes: ");
+		BasicTemplate bb = new BasicTemplate() {
+			@Override
+			public Object programm(Object... args) {
+				return null;
+			}
+		};
 		for (MutationFacade c: classes) {
 			messages.add("#"+c.className());
-			if (c.getaClass().equals(BasicTemplate.class))
+
+			if (c.getaClass().isInstance(bb))
 				messages.add("It works !!!!!!!!!!!!!!!!!!!!!!!!!!");
-			Arrays.stream(c.getaClass().getClasses()).forEach(x -> messages.add(x.getName()));
-			Arrays.stream(c.getaClass().getGenericInterfaces()).forEach(x -> messages.add(x.getTypeName()));
+			Arrays.stream(c.getaClass().getMethods()).forEach(x -> messages.add(x.getName()));
 		}
 
 		/*
