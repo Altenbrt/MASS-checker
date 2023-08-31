@@ -104,9 +104,13 @@ public class MutationChecker {
 
 				messages.add("End of try");
 			} catch (Exception e) {
+				messages.add("Exception)");
 				messages.add(e.getMessage());
+				messages.add(e.getCause().toString());
 			} catch (Error er) {
+				messages.add("Error)");
 				messages.add(er.getMessage());
+				messages.add(ee.getCause().toString());
 			}
 			messages.add("After try catch");
 		}
