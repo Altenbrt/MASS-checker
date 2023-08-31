@@ -70,9 +70,9 @@ public class MutationChecker {
 		List<String> testClassNames = testClasses.stream().map(MutationFacade::className).collect(Collectors.toList());
 
 
-		Object[] versions;
-		Method programm;
-		Method configuration;
+		Object[] versions = null;
+		Method programm = null;
+		Method configuration = null;
 
 		messages.add("testClassNames: ");
 		messages.add("Classes: ");
@@ -99,7 +99,7 @@ public class MutationChecker {
 					//Versions[] v2 = cV.getEnumConstants();
 					String s= versions.length + "";
 					messages.add("Length: " + s);
-					
+
 					//messages.add(v.toString());
 					//Arrays.stream(v2).forEach(x->messages.add(x.toString()));
 				}
@@ -123,6 +123,9 @@ public class MutationChecker {
 			}
 		}
 
+		for (Object o : versions) {
+			messages.add(((Versions)o).getFeedback());
+		}
 		/*
 		//Getting Basic Implementation
 		BasicTemplate programm = new GrayCode();
