@@ -82,10 +82,11 @@ public class MutationChecker {
 			try {
 				Class loadedClass = memoryLoader.loadClass(c.className());
 
-				Arrays.stream(loadedClass.getClasses()).forEach(x -> messages.add(x.getName()));
+				Arrays.stream(loadedClass.getDeclaredClasses()).forEach(x -> messages.add(x.getName()));
 				if (Arrays.stream(loadedClass.getInterfaces()).anyMatch(x -> x.getName().contains("Versions"))) {
 					messages.add("It works !!!!!!!!!!!!!!!!!!!!!!!!!!");
 					//Getting the Enum
+					loadedClass.asSubclass(Versions.class);
 					v = (Versions[]) loadedClass.getEnumConstants();
 					Arrays.stream(v).forEach(x->messages.add(x.toString()));
 				}
@@ -99,7 +100,7 @@ public class MutationChecker {
 			}
 
 		}
-		
+
 		/*
 		//Getting Basic Implementation
 		BasicTemplate programm = new GrayCode();
