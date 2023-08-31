@@ -86,7 +86,9 @@ public class MutationChecker {
 				if (Arrays.stream(loadedClass.getInterfaces()).anyMatch(x -> x.getName().contains("Versions"))) {
 					messages.add("It works !!!!!!!!!!!!!!!!!!!!!!!!!!");
 					//Getting the Enum
-					v = (Versions[]) loadedClass.getEnumConstants();
+					Class<Versions> cV = loadedClass.asSubclass(Versions.class);
+
+					v = cV.getEnumConstants();
 
 					Arrays.stream(v).forEach(x->messages.add(x.getFeedback()));
 				}
