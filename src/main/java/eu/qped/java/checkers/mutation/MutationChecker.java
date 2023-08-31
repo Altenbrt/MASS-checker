@@ -43,15 +43,6 @@ public class MutationChecker {
 
 
 	public List<String> check() {
-		List<String> messages = new ArrayList<>();
-		messages.add("#TEst42");
-		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-		messages.add("#TEst42");
-		System.out.println(messages);
-		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-		return messages;
-		/*
-
 		// Determine the application classes and test classes in the solution
 		List<CoverageFacade> testClasses = new ArrayList<>();
         List<CoverageFacade> classes = new ArrayList<>();
@@ -95,7 +86,7 @@ public class MutationChecker {
 		messages.add("#TEst42");
 		return messages;
 
-		 */
+
 	}
 
 	public void separateTestAndApplicationClasses(List<CoverageFacade> testClasses, List<CoverageFacade> classes)
