@@ -74,7 +74,7 @@ public class MutationChecker {
 			messages.add("#"+c.className());
 			if (c.className().contains("BasicTemplate") || c.className().contains("StudentTests")
 					|| c.className().contains("Versions")) {
-				break;
+				continue;
 			}
 
 			try {
