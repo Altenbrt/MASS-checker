@@ -70,15 +70,12 @@ public class MutationChecker {
 		messages.add("testClassNames: ");
 		Arrays.stream(BasicTemplate.class.getMethods()).forEach(x -> messages.add(x.getName()));
 		messages.add("Classes: ");
-		BasicTemplate bb = new BasicTemplate() {
-			@Override
-			public Object programm(Object... args) {
-				return null;
-			}
-		};
 		for (MutationFacade c: classes) {
 			messages.add("#"+c.className());
-
+			if (c.className().contains("BasicTemplate") || c.className().contains("StudentTests")
+					|| c.className().contains("Versions")) {
+				break;
+			}
 
 			try {
 				Class loadedClass = memoryLoader.loadClass(c.className());
