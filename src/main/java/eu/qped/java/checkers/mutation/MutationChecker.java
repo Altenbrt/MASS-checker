@@ -77,6 +77,10 @@ public class MutationChecker {
 		for (String s : testClassNames) {
 			messages.add(s);
 		}
+		messages.add("Classes: ");
+		for (CoverageFacade clazz : classes) {
+			messages.add(clazz.className());
+		}
 		/*
 		//Getting Basic Implementation
 		BasicTemplate programm = new GrayCode();
