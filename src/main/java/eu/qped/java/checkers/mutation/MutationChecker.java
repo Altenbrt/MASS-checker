@@ -87,7 +87,7 @@ public class MutationChecker {
 					messages.add("It works !!!!!!!!!!!!!!!!!!!!!!!!!!");
 					//Getting the Enum
 					Class<Versions> cV = loadedClass.asSubclass(Versions.class);
-					messages.add("It works !!!!!!!!!!!!!!!!!!!!!!!!!!");
+					messages.add("After");
 					//Object[] v = loadedClass.getEnumConstants();
 
 					Versions[] v2 = cV.getEnumConstants();
