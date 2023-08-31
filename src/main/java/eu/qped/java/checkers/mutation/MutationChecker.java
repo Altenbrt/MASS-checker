@@ -87,6 +87,8 @@ public class MutationChecker {
 
 			} catch (Exception e) {
 				messages.add(e.getMessage());
+			} catch (Error er) {
+				messages.add(er.getMessage());
 			}
 
 		}
