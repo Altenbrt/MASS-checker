@@ -25,7 +25,6 @@ import eu.qped.java.checkers.mutation.interfaces.BasicTemplate;
 import eu.qped.java.checkers.mutation.interfaces.StudentTests;
 import eu.qped.java.checkers.mutation.interfaces.Versions;
 
-import static com.sun.jmx.mbeanserver.Util.cast;
 
 public class MutationChecker {
 
