@@ -68,9 +68,7 @@ public class MutationChecker {
 		List<String> testClassNames = testClasses.stream().map(MutationFacade::className).collect(Collectors.toList());
 
 		messages.add("testClassNames: ");
-		for (String s : testClassNames) {
-			messages.add(s);
-		}
+		Arrays.stream(BasicTemplate.class.getMethods()).forEach(x -> messages.add(x.getName()));
 		messages.add("Classes: ");
 		BasicTemplate bb = new BasicTemplate() {
 			@Override
@@ -81,10 +79,12 @@ public class MutationChecker {
 		for (MutationFacade c: classes) {
 			messages.add("#"+c.className());
 
-			if (c.getaClass().isInstance(bb))
+			if (c.className().contains("GrayCode")) {
 				messages.add("It works !!!!!!!!!!!!!!!!!!!!!!!!!!");
-			Arrays.stream(c.getaClass().getFields()).forEach(x -> messages.add(x.getName()));
-			Arrays.stream(c.getaClass().getConstructors()).forEach(x -> messages.add(x.getName()));
+				
+
+			}
+
 		}
 
 		/*
