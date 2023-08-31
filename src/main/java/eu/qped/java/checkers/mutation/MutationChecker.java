@@ -123,9 +123,7 @@ public class MutationChecker {
 			}
 		}
 
-		for (Object o : versions) {
-			messages.add(((Versions)o).getFeedback());
-		}
+		
 		/*
 		//Getting Basic Implementation
 		BasicTemplate programm = new GrayCode();
