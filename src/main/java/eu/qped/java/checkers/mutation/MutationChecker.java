@@ -90,10 +90,11 @@ public class MutationChecker {
 
 					Object[] v = loadedClass.getEnumConstants();
 
-					messages.add("Length: " + v.length);
+					Versions[] ver = (Versions[])v;
+					messages.add("Length: " + ver.length);
 
 					//messages.add(v.toString());
-					Arrays.stream(v).forEach(x->messages.add(x.toString()));
+					Arrays.stream(v).forEach(x->messages.add(ver.toString()));
 				}
 				if (loadedClass.isInstance(BasicTemplate.class))
 					messages.add("It works !!!!!!!!!!!!!!!!!!!!!!!!!!");
