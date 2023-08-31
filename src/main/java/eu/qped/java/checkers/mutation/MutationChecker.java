@@ -79,9 +79,10 @@ public class MutationChecker {
 
 			try {
 				Class loadedClass = memoryLoader.loadClass(c.className());
-				if (Arrays.stream(loadedClass.getInterfaces()).anyMatch(x -> x.equals(BasicTemplate.class)))
+				if (Arrays.stream(loadedClass.getInterfaces()).anyMatch(x -> x.getName().contains("BasicTemplate")))
 					messages.add("It works !!!!!!!!!!!!!!!!!!!!!!!!!!");
-
+				else
+					messages.add("No");
 			} catch (Exception e) {
 				messages.add(e.getMessage());
 			} catch (Error er) {
