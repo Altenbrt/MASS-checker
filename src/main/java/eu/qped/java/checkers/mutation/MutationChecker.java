@@ -83,7 +83,8 @@ public class MutationChecker {
 
 			if (c.getaClass().isInstance(bb))
 				messages.add("It works !!!!!!!!!!!!!!!!!!!!!!!!!!");
-			Arrays.stream(c.getaClass().getMethods()).forEach(x -> messages.add(x.getName()));
+			Arrays.stream(c.getaClass().getFields()).forEach(x -> messages.add(x.getName()));
+			Arrays.stream(c.getaClass().getConstructors()).forEach(x -> messages.add(x.getName()));
 		}
 
 		/*
