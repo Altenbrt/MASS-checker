@@ -88,13 +88,13 @@ public class MutationChecker {
 				if (Arrays.stream(loadedClass.getInterfaces()).anyMatch(x -> x.getName().contains("Versions"))) {
 					messages.add("It works !!!!!!!!!!!!!!!!!!!!!!!!!!");
 					//Getting the Enum
-					Versions[] cV = cast(loadedClass); //.asSubclass(Versions.class);
+					Object[] cV = loadedClass.getEnumConstants(); //.asSubclass(Versions.class);
 					messages.add("After");
 					//Object[] v = loadedClass.getEnumConstants();
 
 					//Versions[] v2 = cV.getEnumConstants();
-
-					messages.add("Length: " + cV.length);
+					String s= cV.length + "";
+					messages.add("Length: " + s);
 
 					//messages.add(v.toString());
 					//Arrays.stream(v2).forEach(x->messages.add(x.toString()));
